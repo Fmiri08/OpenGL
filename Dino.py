@@ -106,7 +106,8 @@ glUniformMatrix4fv(perspectiveLocation, 1, GL_FALSE, perspMat)
 
 viewMat = pyrr.matrix44.create_look_at([0.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0])
 startTime = 0
-speed = 150
+run_speed = 125 
+speed = run_speed
 exitProgram=False
 
 skyBox = SkyBox(
@@ -125,7 +126,7 @@ while not glfw.window_should_close(window) and not exitProgram:
 	startTime = glfw.get_time()
 	if jumpDir == "up":
 		camera.y += (50*elapsedTime)
-		if camera.y >= 15:
+		if camera.y >= 17:
 			jumpDir = "down"
 	if jumpDir == "down":
 		camera.y-=(50*elapsedTime)
@@ -138,11 +139,9 @@ while not glfw.window_should_close(window) and not exitProgram:
 	if glfw.get_key(window, glfw.KEY_S) == glfw.PRESS:
 		speed = 0
 	if glfw.get_key(window, glfw.KEY_W) == glfw.PRESS:
-		speed = 150
+		speed = run_speed
 	if glfw.get_key(window, glfw.KEY_SPACE) == glfw.PRESS and jumpDir == "none":
 		jumpDir = "up"
-	if glfw.get_key(window, glfw.KEY_ESCAPE) == glfw.PRESS:
-		exitProgram = True
 
 	camera.move(elapsedTime*speed)
 	cellX, cellZ = camera.getCellPosition(20)

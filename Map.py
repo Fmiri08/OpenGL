@@ -31,7 +31,7 @@ class Map:
             self.table[self.height - 1][i] = TypeOfObject.WALL
 
         index = 10
-        while index < self.height:
+        while index < self.height-3:
             rnd = random.randint(0,2)
             if rnd == 2:
                 self.table[index][1] = TypeOfObject.TREE
